@@ -1,0 +1,49 @@
+MDNavigationLayout:
+    ScreenManager:
+        Screen:
+            BoxLayout:
+                canvas.before:
+                    Color:
+                        rgba: 1,1,1,.4
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: 'itnb.png'
+                MDTopAppBar:
+                    id: bottom
+                    title: 'NB-IT Dictionary'
+                    elevation: 4
+                    #left_action_items: [['menu', lambda x: nav_d.set_state('toggle')]] 
+                    left_action_items: [['power', lambda x: app.on_close()]] 
+                    right_action_items: [['information', lambda x: app.dialog_open()], ['theme-light-dark', lambda x:  app.theme(1)], ['palette', lambda x:  app.theme(2)], ['translate', lambda x: app.lang()]]
+            FloatLayout:
+                MDTextField:
+                    id: input
+                    icon_left: 'pencil'
+                    pos_hint_x: '0'
+                    pos_hint:{'x': 0, 'y':.9}
+                    mode: 'rectangle'
+                    size_hint: 1, None
+                    fill_color: 0,0,0,.2
+                    hint_text: 'Cerca'
+                    on_text: app.src(self.text)
+                ScrollView:
+                    id: sw
+                    pos_hint:{'x': 0, 'y':.2}
+                    do_scroll_x: False
+                    size_hint: 1,.7
+                    MDList:
+                        id: tr
+                        #md_bg_color: .5,.5,.5,.7
+<pal_dial>
+    orientation:'vertical'
+    size_hint_y:None
+    size_hint_x: .5
+    height: '120dp'
+    ScrollView:
+        do_scroll_x: False
+        pos_hint: {'center_x':.5, 'center_y':.5}
+        # size_hint_y: 0.5
+        #size_hint_x: .5
+        MDList:
+            id: tr_
